@@ -15,7 +15,7 @@ for (let i=0; i < botoes.length; i++) {
 }
 
 const contadores = document.querySelectorAll(".contador");
-const tempoObjetivo1 = new Date("2024-05-20T16:00:00");
+const tempoObjetivo1 = new Date("2023-05-20T16:00:00");
 const tempoObjetivo2 = new Date("2024-07-15T00:00:00");
 const tempoObjetivo3 = new Date("2024-11-14T00:00:00");
 const tempoObjetivo4 = new Date("2024-12-09T00:00:00");
@@ -37,8 +37,13 @@ function calculaTempo(tempoObjetivo){
     minutos %= 60; 
     horas %= 24; 
 
+    if(tempofinal > 0){  
     return dias + " dias "+ horas + " horas " + minutos + " minutos " + segundos + " segundos";
-}
+    } else{
+      return "TEMPO ESGOTADO";
+    }
+} 
+   
 
 
 function atulizaCronometro(){
@@ -47,5 +52,8 @@ function atulizaCronometro(){
         }
 }
   
-atulizaCronometro();
-setInterval(atulizaCronometro, 1000);
+function comecaCronometro(){
+    atulizaCronometro();
+    setInterval(atulizaCronometro, 1000);
+}
+//comecaCronometro();
