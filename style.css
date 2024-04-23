@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
 :root{
-    --cor-de-fundo: #1e1e1e;
-    --verde: #1969ae;
-    --branco: #199ed3;
+    --cor-de-fundo: #460525;
+    --verde: #d080e4;
+    --branco: #d4709f;
     --botao-ativo: hsl(274, 46%, 60%);
-    --botao-inativo: #83306880;
-    --texto-de-fundo: rgba(240, 44, 139, 0.3);
+    --botao-inativo: #d6069180;
+    --texto-de-fundo: rgba(143, 7, 72, 0.3);
 }
 
 body{
@@ -120,5 +120,5 @@ body{
 .contador-digito-texto{
     font-size: 20px;
     margin: 0;
-    color: crimson;
+    color: rgb(236, 80, 111);
 }
