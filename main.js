@@ -1,59 +1,41 @@
-const botoes = document.querySelectorAll(".botao");
-const textos = document.querySelectorAll(".aba-conteudo");
+const caixaPrincipal = document.querySelector(".caixa-principal");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
+const caixaAlternativas = document.querySelector(".caixa-Alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
 
-
-for (let i=0; i < botoes.length; i++) {
-   botoes[i].onclick = function(){
-
-    for(let j=0; j<botoes.length; j++){
-        botoes[j].classList.remove("ativo");
-        textos[j].classList.remove("ativo");
+const perguntas = [
+    {
+        enunciado: "pergunta 1",
+        alternativa:["alternativa 1", "alternativa 2"]
+    },
+    {
+        enunciado: "pergunta 2",
+        alternativa:["alternativa 1", "alternativa 2"]
+    },
+    {
+        enunciado: "pergunta 3",
+        alternativa:["alternativa 1", "alternativa 2"]
     }
-    botoes[i].classList.add("ativo");
-    textos[i].classList.add("ativo");
-   }
+]
+
+let atual = 0;
+let perguntaAtual;
+
+function mostraPergunta(){
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent="";
+    mostraAlternativas();
 }
 
-const contadores = document.querySelectorAll(".contador");
-const tempoObjetivo1 = new Date("2024-05-30T00:00:00");
-const tempoObjetivo2 = new Date("2024-07-15T00:00:00");
-const tempoObjetivo3 = new Date("2024-11-14T00:00:00");
-const tempoObjetivo4 = new Date("2024-12-09T00:00:00");
-const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4];
-
-
-
-
-function calculaTempo(tempoObjetivo){
-    let tempoAtual = new Date();
-    let tempoFinal = tempoObjetivo - tempoAtual;
-    let segundos = Math.floor(tempoFinal / 1000);
-    let minutos = Math.floor(segundos/60);
-    let horas = Math.floor(minutos/60);
-    let dias = Math.floor(horas/24);
-
-    segundos %= 60;
-    minutos %=60;
-    horas %= 24;
-
-    if(tempoFinal > 0){
-    return [dias,horas,minutos,segundos];
-} else{
-    return [0,0,0,0];
-}
-}
-
-function atualizaCronometro(){
-for (let i = 0; i<contadores.length; i++){
-    document.getElementById("dias"+i).textContent = calculaTempo(tempos[i])[0];
-    document.getElementById("horas"+i).textContent = calculaTempo(tempos[i])[1];
-    document.getElementById("min"+i).textContent = calculaTempo(tempos[i])[2];
-    document.getElementById("seg"+i).textContent = calculaTempo(tempos[i])[3];
+function mostraAlternativas(){
+    for( const alternativa of perguntaAtual.alternativas){
+        const botaoAlternativas = document.createElement("button"); 
+        botaoAlternativas.textContent = alternativa; 
+        caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
 
-function comecaCronometro(){
-atualizaCronometro();
-setInterval(atualizaCronometro, 1000);
-}
-comecaCronometro();
+mostraPergunta();
+
